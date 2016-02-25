@@ -1,0 +1,3 @@
+[submodule "Source/x-superobject"]
+	path = Source/x-superobject
+	url = https://github.com/onryldz/x-superobject.git
