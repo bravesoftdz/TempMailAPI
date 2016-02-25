@@ -1,0 +1,136 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 382
+  ClientWidth = 445
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object ToolBar1: TToolBar
+    Padding.Left = 5.000000000000000000
+    Padding.Top = 5.000000000000000000
+    Padding.Right = 5.000000000000000000
+    Padding.Bottom = 5.000000000000000000
+    Position.Y = 25.000000000000000000
+    Size.Width = 445.000000000000000000
+    Size.Height = 40.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object Button1: TButton
+      Align = Left
+      Margins.Right = 5.000000000000000000
+      Position.X = 5.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 92.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      Text = #1057#1082#1086#1087#1080#1088#1086#1074#1072#1090#1100
+    end
+    object Button2: TButton
+      Align = Left
+      Margins.Right = 5.000000000000000000
+      Position.X = 102.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 92.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Text = #1054#1073#1085#1086#1074#1080#1090#1100
+    end
+    object Button3: TButton
+      Align = Left
+      Margins.Right = 5.000000000000000000
+      Position.X = 199.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 92.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = #1057#1084#1077#1085#1080#1090#1100
+    end
+    object Button4: TButton
+      Align = Left
+      Margins.Right = 5.000000000000000000
+      Position.X = 296.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 92.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = #1059#1076#1072#1083#1080#1090#1100
+    end
+  end
+  object Grid1: TGrid
+    Align = Client
+    Size.Width = 445.000000000000000000
+    Size.Height = 317.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    RowCount = 1
+    RowHeight = 21.000000000000000000
+    Viewport.Width = 441.000000000000000000
+    Viewport.Height = 292.000000000000000000
+    object StringColumn1: TStringColumn
+      Header = #1054#1090#1087#1088#1072#1074#1080#1090#1077#1083#1100
+      Size.Width = 100.000000000000000000
+      Size.Height = 21.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+    end
+    object StringColumn2: TStringColumn
+      Header = #1058#1077#1084#1072
+      Position.X = 100.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 21.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+    end
+    object StringColumn3: TStringColumn
+      Header = #1055#1088#1077#1076#1087#1088#1086#1089#1084#1086#1090#1088
+      Position.X = 200.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 21.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+    end
+    object Column1: TColumn
+      Header = #1055#1088#1086#1089#1084#1086#1090#1088
+      Position.X = 300.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 21.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+    end
+  end
+  object Layout1: TLayout
+    Align = Top
+    Padding.Left = 5.000000000000000000
+    Padding.Top = 2.000000000000000000
+    Padding.Right = 5.000000000000000000
+    Padding.Bottom = 2.000000000000000000
+    Size.Width = 445.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    object Label1: TLabel
+      Align = Left
+      Position.X = 5.000000000000000000
+      Position.Y = 2.000000000000000000
+      Size.Width = 204.000000000000000000
+      Size.Height = 21.000000000000000000
+      Size.PlatformDefault = False
+      Text = #1042#1072#1096' '#1074#1088#1077#1084#1077#1085#1085#1099#1081' Email '#1072#1076#1088#1077#1089
+    end
+    object Edit1: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Client
+      TabOrder = 1
+      Size.Width = 231.000000000000000000
+      Size.Height = 21.000000000000000000
+      Size.PlatformDefault = False
+    end
+  end
+end
