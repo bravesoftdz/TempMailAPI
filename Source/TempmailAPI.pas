@@ -38,21 +38,30 @@ Type
   private
     FDomains: TList<String>;
     FLetters: TObjectList<TTempMailItem>;
+    FOnGetDomains: TNotifyEvent;
+    FOnNotFound: TNotifyEvent;
+    FOnDelete: TNotifyEvent;
+    FOnGetLetters: TNotifyEvent;
   protected
-
-    Function EMailToMD5(Const EMail: String): String;
   public
     // Для проверки и получения списка писем
     Function getMail(Const EMail: String): Boolean;
+    Procedure GetMailAsync(Const EMail: String);
     /// <summary> Список доменов </summary>
     Function getDomains: Boolean;
+    Procedure getDomainsAsync;
     /// <summary>Удаление письма </summary>
     Function delete(Const Item: TTempMailItem): Boolean;
+    Procedure deleteAsync(Const Item: TTempMailItem);
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
   published
     property Domains: TList<String> read FDomains;
     property Letters: TObjectList<TTempMailItem> read FLetters;
+    property OnGetDomains: TNotifyEvent read FOnGetDomains write FOnGetDomains;
+    property OnNotFound: TNotifyEvent read FOnNotFound write FOnNotFound;
+    property OnDelete: TNotifyEvent read FOnDelete write FOnDelete;
+    property OnGetLetters: TNotifyEvent read FOnGetLetters write FOnGetLetters;
   End;
 
 implementation
@@ -60,8 +69,8 @@ implementation
 uses
   XSuperObject, // <-- https://github.com/onryldz/x-superobject
   System.SysUtils,
-  System.JSON,
   System.Net.HttpClient,
+  System.Threading,
   System.Hash;
 
 { TTempMailClient }
@@ -83,13 +92,31 @@ begin
     with HTTP.Get(Format(SERVER_API, ['delete/id/' + Item.mail_id + '/'])) do
     Begin
       if StatusCode = 404 then
+      Begin
+        if Assigned(OnNotFound) then
+          OnNotFound(Self);
         Exit;
+      End;
       { TODO -oOwner -cGeneral : Добавить проверку результата }
     End;
     Result := True;
+    if Assigned(OnDelete) then
+      OnDelete(Self);
   finally
     HTTP.Free;
   end;
+end;
+
+procedure TTempMailClientAPI.deleteAsync(const Item: TTempMailItem);
+var
+  Task: ITask;
+begin
+  Task := TTask.Create(
+    procedure()
+    begin
+      Self.delete(Item);
+    end);
+  Task.Start;
 end;
 
 destructor TTempMailClientAPI.Destroy;
@@ -111,20 +138,33 @@ begin
     with HTTP.Get(Format(SERVER_API, ['domains'])) do
     Begin
       if StatusCode = 404 then
+      Begin
+        if Assigned(OnNotFound) then
+          OnNotFound(Self);
         Exit;
+      End;
       iSuper := TSuperArray.Create(ContentAsString);
       for I := 0 to iSuper.Length - 1 do
         FDomains.Add(iSuper.S[I]);
     End;
+    if Assigned(OnGetDomains) then
+      OnGetDomains(Self);
     Result := True;
   finally
     HTTP.Free;
   end;
 end;
 
-function TTempMailClientAPI.EMailToMD5(const EMail: String): String;
+procedure TTempMailClientAPI.getDomainsAsync;
+var
+  Task: ITask;
 begin
-  Result := THashMD5.GetHashString(EMail);
+  Task := TTask.Create(
+    procedure()
+    begin
+      Self.getDomains;
+    end);
+  Task.Start;
 end;
 
 function TTempMailClientAPI.getMail(const EMail: String): Boolean;
@@ -136,18 +176,37 @@ begin
   Result := false;
   HTTP := THTTPClient.Create;
   try
-    with HTTP.Get(Format(SERVER_API, ['mail/id/' + EMailToMD5(EMail) + '/'])) do
+    with HTTP.Get(Format(SERVER_API, ['mail/id/' + THashMD5.GetHashString(EMail)
+      + '/'])) do
     Begin
       iSuper := TSuperArray.Create(ContentAsString);
       if StatusCode = 404 then
+      Begin
+        if Assigned(OnNotFound) then
+          OnNotFound(Self);
         Exit;
+      End;
       for I := 0 to iSuper.Length - 1 do
         FLetters.Add(TTempMailItem.FromJSON(iSuper.O[I].AsObject));
     End;
+    if Assigned(OnGetLetters) then
+      OnGetLetters(Self);
     Result := True;
   finally
     HTTP.Free;
   end;
+end;
+
+procedure TTempMailClientAPI.GetMailAsync(const EMail: String);
+var
+  Task: ITask;
+begin
+  Task := TTask.Create(
+    procedure()
+    begin
+      getMail(EMail);
+    end);
+  Task.Start;
 end;
 
 end.
