@@ -3,7 +3,8 @@ program TempMailClient;
 uses
   System.StartUpCopy,
   FMX.Forms,
-  uGeneral in 'C:\Users\Maxim\Documents\Embarcadero\Studio\Projects\TempMailAPI\Sample\uGeneral.pas' {Form1};
+  uGeneral in '..\UI\uGeneral.pas' {Form1},
+  TempmailAPI in '..\..\Source\TempmailAPI.pas';
 
 {$R *.res}
 

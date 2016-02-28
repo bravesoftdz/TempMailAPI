@@ -304,10 +304,11 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="C:\Users\Maxim\Documents\Embarcadero\Studio\Projects\TempMailAPI\Sample\uGeneral.pas">
+        <DCCReference Include="..\UI\uGeneral.pas">
             <Form>Form1</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="..\..\Source\TempmailAPI.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -349,18 +350,33 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Win32\Debug\TempMailClient.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="..\Bin\Win32-Debug\TempMailClient.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>TempMailClient.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployClass Name="ProjectiOSDeviceResourceRules">
+                <DeployClass Name="DependencyModule">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.dll;.bpl</Extensions>
+                    </Platform>
                     <Platform Name="iOSDevice64">
                         <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
                     </Platform>
                     <Platform Name="iOSDevice32">
                         <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
                     </Platform>
                 </DeployClass>
                 <DeployClass Name="ProjectOSXResource">
@@ -714,27 +730,12 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <DeployClass Name="DependencyModule">
-                    <Platform Name="Win32">
-                        <Operation>0</Operation>
-                        <Extensions>.dll;.bpl</Extensions>
-                    </Platform>
+                <DeployClass Name="ProjectiOSDeviceResourceRules">
                     <Platform Name="iOSDevice64">
                         <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
-                    <Platform Name="OSX32">
-                        <RemoteDir>Contents\MacOS</RemoteDir>
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
                     </Platform>
                     <Platform Name="iOSDevice32">
                         <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
-                    <Platform Name="iOSSimulator">
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
                     </Platform>
                 </DeployClass>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>

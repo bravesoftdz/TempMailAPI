@@ -1,4 +1,4 @@
-unit TempmailAPI;
+п»їunit TempmailAPI;
 
 interface
 
@@ -8,25 +8,25 @@ uses
 
 Type
   /// <summary>
-  /// Внимание: Временная почта является 'сквозной', принимает все письма без ограничений.
-  /// Все входящие письма удаляются примерно в течение 10 минут после поступления.
+  /// Р’РЅРёРјР°РЅРёРµ: Р’СЂРµРјРµРЅРЅР°СЏ РїРѕС‡С‚Р° СЏРІР»СЏРµС‚СЃСЏ 'СЃРєРІРѕР·РЅРѕР№', РїСЂРёРЅРёРјР°РµС‚ РІСЃРµ РїРёСЃСЊРјР° Р±РµР· РѕРіСЂР°РЅРёС‡РµРЅРёР№.
+  /// Р’СЃРµ РІС…РѕРґСЏС‰РёРµ РїРёСЃСЊРјР° СѓРґР°Р»СЏСЋС‚СЃСЏ РїСЂРёРјРµСЂРЅРѕ РІ С‚РµС‡РµРЅРёРµ 10 РјРёРЅСѓС‚ РїРѕСЃР»Рµ РїРѕСЃС‚СѓРїР»РµРЅРёСЏ.
   /// </summary>
   TTempMailItem = Class
-    /// <summary>Уникальный идентификатор письма в md5 хеше, присвоенный системой </summary>
+    /// <summary>РЈРЅРёРєР°Р»СЊРЅС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РїРёСЃСЊРјР° РІ md5 С…РµС€Рµ, РїСЂРёСЃРІРѕРµРЅРЅС‹Р№ СЃРёСЃС‚РµРјРѕР№ </summary>
     mail_id: String;
-    /// <summary>md5 хеш почтового адреса </summary>
+    /// <summary>md5 С…РµС€ РїРѕС‡С‚РѕРІРѕРіРѕ Р°РґСЂРµСЃР° </summary>
     mail_address_id: String;
-    /// <summary> Отправитель</summary>
+    /// <summary> РћС‚РїСЂР°РІРёС‚РµР»СЊ</summary>
     mail_from: String;
-    /// <summary>Тема </summary>
+    /// <summary>РўРµРјР° </summary>
     mail_subject: String;
-    /// <summary>Предпросмотр сообщения </summary>
+    /// <summary>РџСЂРµРґРїСЂРѕСЃРјРѕС‚СЂ СЃРѕРѕР±С‰РµРЅРёСЏ </summary>
     mail_preview: String;
-    /// <summary>Cообщение в текстовом или в html формате (основной) </summary>
+    /// <summary>CРѕРѕР±С‰РµРЅРёРµ РІ С‚РµРєСЃС‚РѕРІРѕРј РёР»Рё РІ html С„РѕСЂРјР°С‚Рµ (РѕСЃРЅРѕРІРЅРѕР№) </summary>
     mail_text_only: String;
-    /// <summary> Cообщение только в текстовом формате</summary>
+    /// <summary> CРѕРѕР±С‰РµРЅРёРµ С‚РѕР»СЊРєРѕ РІ С‚РµРєСЃС‚РѕРІРѕРј С„РѕСЂРјР°С‚Рµ</summary>
     mail_text: String;
-    /// <summary> Cообщение только в html формате</summary>
+    /// <summary> CРѕРѕР±С‰РµРЅРёРµ С‚РѕР»СЊРєРѕ РІ html С„РѕСЂРјР°С‚Рµ</summary>
     mail_html: String;
 
     mail_timestamp: TDateTime;
@@ -44,13 +44,13 @@ Type
     FOnGetLetters: TNotifyEvent;
   protected
   public
-    // Для проверки и получения списка писем
+    // Р”Р»СЏ РїСЂРѕРІРµСЂРєРё Рё РїРѕР»СѓС‡РµРЅРёСЏ СЃРїРёСЃРєР° РїРёСЃРµРј
     Function getMail(Const EMail: String): Boolean;
     Procedure GetMailAsync(Const EMail: String);
-    /// <summary> Список доменов </summary>
+    /// <summary> РЎРїРёСЃРѕРє РґРѕРјРµРЅРѕРІ </summary>
     Function getDomains: Boolean;
     Procedure getDomainsAsync;
-    /// <summary>Удаление письма </summary>
+    /// <summary>РЈРґР°Р»РµРЅРёРµ РїРёСЃСЊРјР° </summary>
     Function delete(Const Item: TTempMailItem): Boolean;
     Procedure deleteAsync(Const Item: TTempMailItem);
     constructor Create(AOwner: TComponent); override;
@@ -97,7 +97,7 @@ begin
           OnNotFound(Self);
         Exit;
       End;
-      { TODO -oOwner -cGeneral : Добавить проверку результата }
+      { TODO -oOwner -cGeneral : Р”РѕР±Р°РІРёС‚СЊ РїСЂРѕРІРµСЂРєСѓ СЂРµР·СѓР»СЊС‚Р°С‚Р° }
     End;
     Result := True;
     if Assigned(OnDelete) then
